@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %} Gestão de Integrações : Análise Clínica {% endblock %}
+
+{% block main %}
+    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'pagina_principal' %}">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Métricas</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Análises</a>
+                <span class="sr-only">(current)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </div>
+    <br><br><br>
+
+      <div class="row">
+         <div class="col">
+
+        </div>
+
+        <div class="col6">
+                   <div class="jumbotron">
+                        <h3>Integrações Fleury</h3>
+                        <p><h4>Análise Clínica e Imagem</h4></p>
+                    <p class="card-text">Monitoração de Eventos</p>
+         </div>
+        </div>
+         <div class="col">
+
+        </div>
+        </div>
+      <div class="row">
+        <div class="col">
+            <blockquote class="blockquote">
+              <p class="mb-0">Registros de exames identificados com pendência de cadastro e/ou cobertura no sistema Fleury.</p>
+              <footer class="blockquote-footer">Ausência de cadastro ou cobertura de exame, inviabiliza a integrações dos demais exames de uma prescrição médica.
+                  <cite title="Source Title"><a href="{% url 'lista_cadfleury' %}" > Eventos relacionados.</a></cite></footer>
+            </blockquote>
+        </div>
+         <div class="col">
+            <blockquote class="blockquote">
+              <p class="mb-0">Exames não enviados ao Fleury.</p>
+              <footer class="blockquote-footer">
+                  <cite title="Source Title">Necessidade de investigar log de eventos no sistema HIS para conluir a causa: erro técnico, funcional ou de cadastro.<a href="{% url 'examesnaointegrados' %}" > Eventos relacionados.</a></cite></footer>
+            </blockquote>
+        </div>
+      </div>
+
+    <br><br>
+
+      <div class="row">
+        <div class="col">
+            <blockquote class="blockquote">
+              <p class="mb-0">Registros de exames identificados com demora no retorno do laudo do Fleury para o Tasy.</p>
+              <footer class="blockquote-footer">Exames com mais de 4 horas de retorno ao Tasy.
+                  <cite title="Source Title"><a href="{% url 'retornolaudo' %}" > Eventos relacionados.</a></cite></footer>
+            </blockquote>
+        </div>
+         <div class="col">
+
+        </div>
+
+      </div>
+
+{% endblock %}
+

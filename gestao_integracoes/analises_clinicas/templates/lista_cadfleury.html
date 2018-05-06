@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Gestão de Integrações : Análise Clínica {% endblock %}
+
+{% block main %}
+
+    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'pagina_principal' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Métricas</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Análises</a>
+                <span class="sr-only">(current)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </div>
+    <br><br><br>
+
+      <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <div class="jumbotron">
+                    <h3>Integrações Fleury</h3>
+                    <p><h4>Análise Clínica e Imagem</h4></p>
+                    <p class="card-text">Monitoração de Eventos - Exames Não Integrados Fleury</p>
+
+                 <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col6">
+                        <div class="form-group">
+                            <label for="dt_evento">Data do Evento:</label>
+                            <input id="dt_evento" type="date" name="dt_evento" max="3000-12-31"
+                                   min="1000-01-01" value="{{ data }}" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="col-md">
+
+                    </div>
+                    <div class="col-md">
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary">Pesquisar</button>
+            </form>
+
+                </div>
+
+             </div>
+            <div class="col" align="right">
+                <a href="{% url 'home_analises_clinicas' %}" class="btn btn-secondary">Voltar</a>
+            </div>
+
+      </div>
+
+
+     <div class="container">
+      <div class="row">
+        <div class="col">
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" width="30%">Estabelecimento</th>
+                  <th scope="col">Prescrição</th>
+                  <th scope="col" width="15%">Data do Evento</th>
+                  <th scope="col">Descrição do Evento</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                        {% for l in lista %}
+
+                                <tr>
+                                  <td>{{ l.ds_estabelecimento }}</td>
+                                  <td>{{ l.nr_prescricao }}</td>
+                                  <td>{{ l.dt_evento|date:"d/m/y" }}</td>
+                                  <td>{{ l.ds_comando }}</td>
+                                </tr>
+
+                        {% endfor %}
+
+              </tbody>
+            </table>
+        </div>
+      </div>
+      {% if msg != None %}
+         <div class="alert alert-light" role="alert">
+             {{ msg }}
+         </div>
+      {% endif %}
+    <br>
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                {% if lista.has_previous %}
+                    <a href="?page=1&dt_evento={{ data }}">&laquo; Primeiro</a>
+                    <a href="?page={{ lista.previous_page_number }}&dt_evento={{ data }}"</a>
+                {% endif %}
+
+                <span class="current">
+                    {% if lista.number > 0 %}
+                        Página {{ lista.number }} of {{ lista.paginator.num_pages }}.
+                    {% endif %}
+                </span>
+
+                {% if lista.has_next %}
+                    <a href="?page={{ lista.next_page_number }}&dt_evento={{ data }}">Próximo</a>
+                    <a href="?page={{ lista.paginator.num_pages }}&dt_evento={{ data }}">Último &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+<br><br>
+
+{% endblock %}

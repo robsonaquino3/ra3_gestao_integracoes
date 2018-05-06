@@ -66,7 +66,14 @@ WSGI_APPLICATION = 'gestao_integracoes.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'ANALIT',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '10.250.2.73',
+        'PORT': '1521',
+    }
 }
 
 
